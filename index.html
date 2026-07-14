@@ -192,9 +192,9 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
   footer .lg{font-size:20px;font-weight:800;letter-spacing:1px;margin-bottom:6px;}
   footer b{color:var(--gold);}
   .site-logo{display:block;text-align:center;margin-bottom:28px;animation:heroUp .6s cubic-bezier(.16,1,.3,1) both;}
-  .site-logo img{height:70px;width:auto;display:block;margin:0 auto;}
-  .footer-logo{height:46px;width:auto;margin:0 auto 16px;display:block;}
-  @media(max-width:600px){.site-logo img{height:40px;}.footer-logo{height:38px;}
+  .site-logo img{height:48px;width:auto;display:block;margin:0 auto;}
+  .footer-logo{height:38px;width:auto;margin:0 auto 16px;display:block;}
+  @media(max-width:600px){.site-logo img{height:32px;}.footer-logo{height:30px;}
     header{padding:32px 0 16px;}
     .site-logo{margin-bottom:14px;}
     .badge{font-size:11px;letter-spacing:1.2px;padding:6px 14px;margin-bottom:30px;}
@@ -292,8 +292,9 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
   .hero-card:hover{transform:translateY(-4px);box-shadow:0 40px 90px rgba(0,0,0,0.6);}
   .hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
   .hc-brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px;color:#fff;font-size:15px;}
-  .hc-brand .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(180deg,#e8b855,#c4881f);
-    display:flex;align-items:center;justify-content:center;color:#1c1408;font-weight:900;font-size:15px;}
+  .hc-brand .dot{width:34px;height:34px;border-radius:10px;overflow:hidden;flex:none;
+    display:flex;align-items:center;justify-content:center;border:1px solid var(--line);}
+  .hc-brand .dot img{width:100%;height:100%;object-fit:cover;display:block;}
   .hc-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:.6px;
     text-transform:uppercase;color:var(--gold);}
   .hc-status .pulse{width:9px;height:9px;border-radius:50%;background:#5ad07a;box-shadow:0 0 0 0 rgba(90,208,122,.6);
@@ -369,6 +370,45 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
   @media(max-width:460px){.contact{flex-direction:column;text-align:center;gap:14px;padding:24px 20px;}
     .contact .ci{align-items:center;}.contact .cn{font-size:20px;}}
 
+  /* Karriere-Aufstieg */
+  .career{margin-top:60px;padding-top:50px;border-top:1px solid rgba(255,255,255,0.08);}
+  .career .eyebrow{text-align:center;}
+  .career-h{text-align:center;font-size:clamp(24px,4vw,38px);font-weight:900;letter-spacing:-0.8px;line-height:1.14;}
+  .career .lead{text-align:center;}
+  .ladder{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,2.6vw,22px);
+    max-width:640px;margin:50px auto 0;padding-top:52px;}
+  .rung{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px;}
+  .plate{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 6px;text-align:center;
+    display:flex;flex-direction:column;gap:3px;}
+  .plate .lvl{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);}
+  .plate .role{font-size:clamp(15px,3.6vw,20px);font-weight:900;color:#fff;line-height:1;}
+  .plate .pay{font-size:clamp(10px,2.4vw,12px);font-weight:800;color:var(--gold);letter-spacing:.3px;margin-top:3px;}
+  .plate.closer{border-color:var(--gold);}
+  .bar{border-radius:12px 12px 0 0;background:linear-gradient(180deg,#e8b855,#c4881f);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.4);transform-origin:bottom;}
+  .r1 .bar{height:64px} .r2 .bar{height:116px} .r3 .bar{height:172px}
+  .r3 .bar{background:linear-gradient(180deg,#f8dca0,#e0b25a 55%,#a9641f);}
+  .goal{position:absolute;top:-10px;left:50%;transform:translate(-50%,-100%);white-space:nowrap;z-index:4;
+    background:linear-gradient(180deg,#e8b855,#c4881f);color:#1c1408;font-weight:900;font-size:10.5px;letter-spacing:.5px;
+    text-transform:uppercase;padding:5px 11px;border-radius:30px;box-shadow:0 8px 20px rgba(196,136,31,.4);}
+  .goal:after{content:'';position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:#c4881f;}
+  .spark{position:absolute;left:8%;bottom:5%;width:14px;height:14px;border-radius:50%;z-index:3;pointer-events:none;
+    background:radial-gradient(circle,#fff 30%,#e8b855 72%);box-shadow:0 0 18px 5px rgba(224,178,90,.6);}
+  @media(prefers-reduced-motion:no-preference){
+    .career.in .bar{animation:barGrow .9s cubic-bezier(.16,1,.3,1) both;}
+    .career.in .r2 .bar{animation-delay:.14s;} .career.in .r3 .bar{animation-delay:.28s;}
+    .career.in .plate{animation:plateUp .7s cubic-bezier(.16,1,.3,1) both;}
+    .career.in .r2 .plate{animation-delay:.14s;} .career.in .r3 .plate{animation-delay:.28s;}
+    .career.in .goal{animation:plateUp .7s .55s cubic-bezier(.16,1,.3,1) both;}
+    .spark{animation:climb 3.4s ease-in-out infinite;}
+    .plate.closer{animation:closerGlow 2.6s ease-in-out infinite;}
+  }
+  @keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  @keyframes plateUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes climb{0%{left:8%;bottom:5%;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:86%;bottom:64%;opacity:0}}
+  @keyframes closerGlow{0%,100%{box-shadow:0 0 0 1px var(--gold),0 14px 32px rgba(196,136,31,.22)}50%{box-shadow:0 0 0 1px var(--gold),0 18px 46px rgba(196,136,31,.5)}}
+
   /* Event-Galerie */
   .events-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
   .events-row .media img{aspect-ratio:4/3;}
@@ -397,7 +437,7 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
 
     <div class="hero-card" onclick="openApplyModal()">
       <div class="hc-top">
-        <span class="hc-brand"><span class="dot">UA</span>Umsatz mit Autos</span>
+        <span class="hc-brand"><span class="dot"><img src="/apple-touch-icon.png" alt=""></span>Umsatz mit Autos</span>
         <span class="hc-status"><span class="pulse"></span>Offene Stelle</span>
       </div>
       <div class="hc-role">Vertriebs&shy;mitarbeiter <span>(m/w/d)</span></div>
@@ -457,6 +497,40 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
       <div class="card reveal d1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 6a3 3 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></div><h3>Erfahrenes Team</h3><p>Du profitierst von über 15+ Jahren Erfahrung im Vertrieb &ndash; und lernst von Leuten, die es wirklich können.</p></div>
       <div class="card reveal d2"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Echte Perspektive</h3><p>Weiterbildung, Coaching und Aufstiegschancen. Wir wollen, dass du langfristig mit uns wächst.</p></div>
       <div class="card reveal d3"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 6h11M8 12h11M8 18h11M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></div><h3>Erprobte Skripte</h3><p>Du gehst nie unvorbereitet ins Gespräch: bewährte Gesprächsleitfäden und Tools, die die Akquise deutlich leichter machen.</p></div>
+    </div>
+
+    <div class="career reveal">
+      <p class="eyebrow">Deine Perspektive</p>
+      <h3 class="career-h">Dein Weg nach oben: vom <span class="gold">Opener</span> zum <span class="gold">Closer</span>.</h3>
+      <p class="lead">Bei uns bleibst du nicht stehen. Jeder, der im Vertrieb bei uns startet, durchläuft ein klares Karriere-System &ndash; wir bilden dich Stufe für Stufe aus: vom Opener über den Setter bis zum Closer. Mit jeder Stufe wächst deine Verantwortung, dein Können &ndash; und dein Einkommen. Deine Provision ist <b>ungedeckelt</b>: Wie weit du nach oben gehst, entscheidest allein du.</p>
+      <div class="ladder">
+        <span class="spark" aria-hidden="true"></span>
+        <div class="rung r1">
+          <div class="plate">
+            <span class="lvl">Stufe 1</span>
+            <span class="role">Opener</span>
+            <span class="pay">Fix + Provision</span>
+          </div>
+          <div class="bar"></div>
+        </div>
+        <div class="rung r2">
+          <div class="plate">
+            <span class="lvl">Stufe 2</span>
+            <span class="role">Setter</span>
+            <span class="pay">Mehr Provision</span>
+          </div>
+          <div class="bar"></div>
+        </div>
+        <div class="rung r3">
+          <span class="goal">Dein Ziel ↑</span>
+          <div class="plate closer">
+            <span class="lvl">Stufe 3</span>
+            <span class="role">Closer</span>
+            <span class="pay">Ungedeckelt</span>
+          </div>
+          <div class="bar"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
