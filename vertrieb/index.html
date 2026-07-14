@@ -779,7 +779,7 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
 
     // 3) Meta: Browser-Pixel + Conversions API (gemeinsame event_id für Dedup)
     const eventId = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random().toString(16).slice(2));
-    try { if (window.fbq) fbq('track', 'Lead', {}, { eventID: eventId }); } catch (err) {}
+    try { if (window.fbq) fbq('track', 'SubmitApplication', {}, { eventID: eventId }); } catch (err) {}
     try {
       fetch('/api/lead', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,

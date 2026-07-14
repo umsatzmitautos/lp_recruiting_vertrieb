@@ -1,5 +1,5 @@
 // Meta Conversions API (server-side) für Bewerbungen.
-// Sendet ein "Lead"-Event serverseitig an den UMA-Karriere-Pixel.
+// Sendet ein "SubmitApplication"-Event ("Bewerbung einreichen") serverseitig an den UMA-Karriere-Pixel.
 // Der Zugriffstoken kommt AUSSCHLIESSLICH aus der Vercel-Umgebungsvariable
 // META_CAPI_TOKEN (niemals im Code/Repo). Optional: META_TEST_EVENT_CODE zum Testen.
 
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
   if (body.fbc) user_data.fbc = body.fbc;
 
   const event = {
-    event_name: 'Lead',
+    event_name: 'SubmitApplication',
     event_time: Math.floor(Date.now() / 1000),
     action_source: 'website',
     event_source_url: body.sourceUrl || 'https://bewerbung.umsatzmitautos.de/vertrieb',
