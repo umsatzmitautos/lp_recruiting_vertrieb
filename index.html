@@ -711,14 +711,9 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
   document.addEventListener('keydown', e=>{ if(e.key==='Escape' && applyModal.classList.contains('open')) closeApplyModal(); });
 
   /* ===== Bewerbungen per E-Mail (Formspree) =====
-     EINMALIGES SETUP (ca. 2 Min):
-     1. Auf https://formspree.io kostenlos registrieren (mit a.mehic@web.de).
-     2. Neues Formular anlegen -> du bekommst eine Endpoint-URL wie
-        https://formspree.io/f/abcdwxyz
-     3. Diese ID unten bei FORM_ENDPOINT eintragen. Fertig.
-     Die Bewerbungen landen dann als E-Mail in deinem Postfach.
-     (Alternativ funktioniert jeder Dienst, der ein JSON-POST annimmt.) */
-  const FORM_ENDPOINT = "https://formspree.io/f/DEINE_FORM_ID";
+     Formular "Bewerbungen Vertrieb (Innendienst)" im Formspree-Konto von Armin Mehic.
+     Empfänger: armin.mehic@mach-umsatz.de. Bewerbungen kommen dort als E-Mail an. */
+  const FORM_ENDPOINT = "https://formspree.io/f/mpqvwdkz";
 
   async function submitApplication(e){
     e.preventDefault();
