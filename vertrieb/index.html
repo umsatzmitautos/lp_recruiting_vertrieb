@@ -710,10 +710,20 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
   applyModal.addEventListener('click', e=>{ if(e.target===applyModal) closeApplyModal(); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape' && applyModal.classList.contains('open')) closeApplyModal(); });
 
-  /* ===== Bewerbungen per E-Mail (Formspree) =====
-     Formular "Bewerbungen Vertrieb (Innendienst)" im Formspree-Konto von Armin Mehic.
-     Empfänger: armin.mehic@mach-umsatz.de. Bewerbungen kommen dort als E-Mail an. */
+  /* ===== Bewerbungen: Formspree (E-Mail) + HubSpot (CRM) + Meta (Pixel & Conversions API) =====
+     - Formspree "Bewerbungen Vertrieb (Innendienst)" -> E-Mail an armin.mehic@mach-umsatz.de
+     - HubSpot-Formular 068405cf-... (Portal 26710769) -> Kontakt im CRM
+     - Meta: Browser-Pixel 'Lead' + serverseitige Conversions API (/api/lead) mit gemeinsamer
+       event_id, damit Meta die beiden Events zu einem zusammenführt (Dublettenerkennung). */
   const FORM_ENDPOINT = "https://formspree.io/f/mpqvwdkz";
+  const HS_PORTAL = "26710769";
+  const HS_FORM   = "068405cf-875a-4f2c-ad3a-a4679c0b8be7";
+  const HS_ENDPOINT = "https://api-eu1.hsforms.com/submissions/v3/integration/submit/" + HS_PORTAL + "/" + HS_FORM;
+
+  function cookieVal(name){
+    const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.*+?^${}()|[\]\\])/g,'\\$1') + '=([^;]+)'));
+    return m ? decodeURIComponent(m[1]) : "";
+  }
 
   async function submitApplication(e){
     e.preventDefault();
@@ -735,27 +745,51 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     const erfahrung = f.querySelector('select[name="erfahrung"]').value;
     const nachricht = f.querySelector('textarea[name="nachricht"]').value.trim();
 
-    const payload = {
-      Vorname: vorname,
-      Nachname: nachname,
-      email: email,
-      Telefon: phone,
-      Vertriebserfahrung: erfahrung,
-      Nachricht: nachricht,
-      _subject: "Neue Bewerbung Vertrieb: " + vorname + " " + nachname
-    };
-
     if (btn){ btn.disabled = true; btn.dataset.txt = btn.textContent; btn.textContent = "Wird gesendet …"; }
+
+    // 1) Formspree -> E-Mail
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          Vorname: vorname, Nachname: nachname, email: email, Telefon: phone,
+          Vertriebserfahrung: erfahrung, Nachricht: nachricht,
+          _subject: "Neue Bewerbung Vertrieb: " + vorname + " " + nachname
+        })
       });
-      if (!res.ok) console.error("Bewerbungs-Submit fehlgeschlagen:", res.status, await res.text());
-    } catch (err) {
-      console.error("Bewerbungs-Submit Netzwerkfehler:", err);
-    }
+      if (!res.ok) console.error("Formspree fehlgeschlagen:", res.status);
+    } catch (err) { console.error("Formspree Netzwerkfehler:", err); }
+
+    // 2) HubSpot -> Kontakt im CRM
+    try {
+      const hs = {
+        fields: [
+          { name: "email", value: email },
+          { name: "firstname", value: vorname },
+          { name: "lastname", value: nachname },
+          { name: "phone", value: phone }
+        ],
+        context: { pageUri: location.href, pageName: document.title }
+      };
+      const hutk = cookieVal('hubspotutk');
+      if (hutk) hs.context.hutk = hutk;
+      await fetch(HS_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(hs) });
+    } catch (err) { console.error("HubSpot Netzwerkfehler:", err); }
+
+    // 3) Meta: Browser-Pixel + Conversions API (gemeinsame event_id für Dedup)
+    const eventId = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random().toString(16).slice(2));
+    try { if (window.fbq) fbq('track', 'Lead', {}, { eventID: eventId }); } catch (err) {}
+    try {
+      fetch('/api/lead', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+        body: JSON.stringify({
+          eventId, email, phone, firstName: vorname, lastName: nachname,
+          sourceUrl: location.href, fbp: cookieVal('_fbp'), fbc: cookieVal('_fbc')
+        })
+      });
+    } catch (err) {}
+
     window.location.href = "/danke";
   }
 </script>
