@@ -414,6 +414,16 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
   .events-row .media img{aspect-ratio:4/3;}
   @media(max-width:700px){.events-row{grid-template-columns:1fr 1fr;}}
   @media(max-width:440px){.events-row{grid-template-columns:1fr;}}
+
+  /* Stellenkarte: Marke & Status auf Mobile jeweils einzeilig */
+  @media(max-width:600px){
+    .hero-card{padding:26px 20px;}
+    .hc-top{gap:10px;}
+    .hc-brand{font-size:13px;gap:8px;white-space:nowrap;}
+    .hc-brand .dot{width:30px;height:30px;}
+    .hc-status{font-size:9.5px;gap:5px;letter-spacing:.3px;white-space:nowrap;}
+    .hc-status .pulse{width:8px;height:8px;}
+  }
 </style>
 
 <header>
