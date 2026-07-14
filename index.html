@@ -269,6 +269,15 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
 </style>
 <style>
   /* ===== Recruiting-spezifische Ergänzungen ===== */
+  /* Dezentes Hero-Hintergrundfoto (Live-Event) */
+  .hero-photo{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.26;}
+  .hero-photo:after{content:'';position:absolute;inset:0;
+    background:
+      linear-gradient(180deg,rgba(12,10,8,0.45) 0%,rgba(12,10,8,0.62) 42%,rgba(12,10,8,0.9) 78%,var(--bg) 100%),
+      radial-gradient(120% 70% at 50% 0%,rgba(224,178,90,0.12),transparent 55%);}
+  header>.wrap{position:relative;z-index:2;}
+  header .beam{z-index:1;}
   .tagline{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px auto 0;max-width:640px;}
   .tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(224,178,90,0.08);
     color:var(--txt);font-weight:700;font-size:14px;padding:9px 16px;border-radius:40px;}
@@ -368,6 +377,7 @@ src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></
 </style>
 
 <header>
+  <div class="hero-photo"><img src="/vertrieb-hero-bg.jpg" alt="" aria-hidden="true"></div>
   <div class="beam"></div>
   <div class="wrap">
     <a href="/" class="site-logo"><img src="/logo.png" alt="Umsatz mit Autos"></a>
