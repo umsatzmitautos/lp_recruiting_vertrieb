@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Bewerbung eingegangen · Umsatz mit Autos</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1183853579955672');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1183853579955672&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap');
+  :root{
+    --bg:#0c0a08; --bg2:#15110c; --gold:#e0b25a; --gold2:#a9641f;
+    --txt:#e8e4de; --muted:#9a948c; --card:#1a1510; --line:rgba(224,178,90,0.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;overflow-x:hidden;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px;
+    background:radial-gradient(120% 60% at 50% 0%,rgba(224,178,90,0.16),transparent 55%),linear-gradient(180deg,var(--bg2),var(--bg));}
+  .beam{position:fixed;top:-200px;left:50%;width:680px;height:1200px;transform:translateX(-58%) rotate(18deg);
+    background:linear-gradient(180deg,rgba(255,225,170,0.12),transparent 65%);filter:blur(42px);pointer-events:none;z-index:0;}
+  .wrap{position:relative;z-index:1;max-width:640px;width:100%;text-align:center;}
+  .gold{background:linear-gradient(180deg,#f8dca0,#e0b25a 55%,#a9641f);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  .check{width:104px;height:104px;border-radius:50%;margin:0 auto 26px;
+    background:linear-gradient(180deg,#e8b855,#c4881f);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 18px 45px rgba(196,136,31,0.45),inset 0 2px 4px rgba(255,255,255,0.5);
+    animation:pop .6s cubic-bezier(.16,1,.3,1) both;}
+  .check svg{width:52px;height:52px;}
+  .check svg path{stroke:#1c1408;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none;
+    stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .35s ease forwards;}
+
+  .badge{display:inline-block;border:1px solid var(--line);background:rgba(224,178,90,0.1);color:var(--gold);
+    font-weight:700;letter-spacing:1.5px;font-size:13px;text-transform:uppercase;padding:9px 20px;border-radius:40px;margin-bottom:22px;
+    animation:up .7s cubic-bezier(.16,1,.3,1) both;}
+  h1{font-size:clamp(30px,5.5vw,50px);font-weight:900;line-height:1.05;letter-spacing:-1.2px;animation:up .8s cubic-bezier(.16,1,.3,1) .1s both;}
+  .sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:520px;margin:20px auto 0;animation:up .8s cubic-bezier(.16,1,.3,1) .22s both;}
+
+  .steps{margin:38px auto 0;max-width:480px;text-align:left;display:grid;gap:14px;animation:up .9s cubic-bezier(.16,1,.3,1) .34s both;}
+  .step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:18px 20px;}
+  .step .n{font-family:'Playfair Display',serif;font-style:italic;font-size:26px;color:var(--gold);line-height:1;min-width:32px;}
+  .step .t{font-size:15px;color:var(--txt);}
+  .step .t b{color:#fff;font-weight:800;}
+
+  .hint{margin-top:26px;font-size:14px;color:var(--muted);animation:up .9s cubic-bezier(.16,1,.3,1) .46s both;}
+  .hint b{color:var(--gold);}
+
+  .download{display:inline-flex;flex-direction:column;align-items:center;gap:5px;background:linear-gradient(180deg,#e8b855,#c4881f);
+    color:#1c1408;font-weight:900;font-size:21px;padding:22px 44px;border-radius:16px;text-decoration:none;border:none;cursor:pointer;
+    margin-top:36px;box-shadow:0 18px 45px rgba(196,136,31,0.4),inset 0 2px 4px rgba(255,255,255,0.5);
+    transition:transform .15s,box-shadow .15s;animation:up .9s cubic-bezier(.16,1,.3,1) .4s both;}
+  .download:hover{transform:translateY(-2px);box-shadow:0 24px 55px rgba(196,136,31,0.55);}
+  .download .row{display:inline-flex;align-items:center;gap:12px;}
+  .download svg{width:26px;height:26px;fill:none;stroke:#1c1408;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .download small{font-weight:600;font-size:13px;opacity:.8;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;background:transparent;
+    color:var(--gold);font-weight:700;font-size:15px;padding:12px 24px;border-radius:12px;text-decoration:none;border:1px solid var(--line);cursor:pointer;
+    margin-top:22px;transition:background .2s,transform .15s;animation:up 1s cubic-bezier(.16,1,.3,1) .56s both;}
+  .btn:hover{background:rgba(224,178,90,0.1);transform:translateY(-1px);}
+
+  .consult{margin-top:44px;padding-top:36px;border-top:1px solid var(--line);animation:up 1s cubic-bezier(.16,1,.3,1) .5s both;}
+  .consult .ch{font-size:clamp(20px,4.4vw,26px);font-weight:800;color:#fff;letter-spacing:-0.4px;line-height:1.25;max-width:470px;margin:0 auto;}
+  .consult .cs{color:var(--muted);font-size:15px;margin:12px auto 0;max-width:440px;}
+  .consult-graphic{position:relative;display:block;width:100%;max-width:480px;margin:26px auto 0;border-radius:16px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,0.45);cursor:pointer;transition:transform .18s,box-shadow .18s;}
+  .consult-graphic:hover{transform:translateY(-3px);box-shadow:0 26px 62px rgba(0,0,0,0.55);}
+  .consult-graphic .cg-photo{display:block;width:100%;height:auto;}
+  .consult-graphic .cg-shade{position:absolute;inset:0;background:
+    linear-gradient(100deg,rgba(0,0,0,0.86) 0%,rgba(0,0,0,0.5) 40%,rgba(0,0,0,0.06) 66%,rgba(0,0,0,0) 82%),
+    linear-gradient(0deg,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 44%);}
+  .cg-content{position:absolute;inset:0;padding:20px 22px;display:flex;flex-direction:column;text-align:left;}
+  .cg-head{text-transform:uppercase;font-weight:900;letter-spacing:-0.4px;line-height:1.0;font-size:clamp(17px,4.4vw,25px);
+    text-shadow:0 2px 12px rgba(0,0,0,0.75);}
+  .cg-head span{display:block;}
+  .cg-head .w{color:#fff;}
+  .cg-head .g{color:transparent;background:linear-gradient(180deg,#f8dca0,#e0b25a 55%,#a9641f);-webkit-background-clip:text;background-clip:text;}
+  .cg-sub{margin-top:auto;max-width:76%;color:#fff;font-weight:700;line-height:1.25;font-size:clamp(12px,2.7vw,15px);text-shadow:0 2px 10px rgba(0,0,0,0.85);}
+  .cg-sub b{color:var(--gold);}
+  .consult-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#e8b855,#c4881f);
+    color:#1c1408;font-weight:900;font-size:18px;padding:18px 38px;border-radius:14px;text-decoration:none;
+    margin-top:24px;box-shadow:0 16px 40px rgba(196,136,31,0.4),inset 0 2px 4px rgba(255,255,255,0.5);
+    transition:transform .15s,box-shadow .15s;}
+  .consult-cta:hover{transform:translateY(-2px);box-shadow:0 22px 50px rgba(196,136,31,0.55);}
+  .consult-cta svg{width:22px;height:22px;fill:none;stroke:#1c1408;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+
+  .brand{margin-top:44px;font-size:13px;color:var(--muted);letter-spacing:1px;animation:up 1s cubic-bezier(.16,1,.3,1) .66s both;}
+  .brand b{color:var(--txt);}
+  .legal{margin-top:14px;font-size:12px;color:var(--muted);animation:up 1s cubic-bezier(.16,1,.3,1) .72s both;}
+  .legal a{color:inherit;text-decoration:none;}
+  .legal a:hover{color:var(--gold);text-decoration:underline;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:34px;
+    animation:up .6s cubic-bezier(.16,1,.3,1) both;}
+  .tb-logo img{height:42px;width:auto;display:block;}
+  .tb-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#e8b855,#c4881f);
+    color:#1c1408;font-weight:800;font-size:14px;padding:11px 20px;border-radius:40px;text-decoration:none;white-space:nowrap;
+    box-shadow:0 8px 22px rgba(196,136,31,0.32),inset 0 1px 2px rgba(255,255,255,0.4);transition:transform .15s,box-shadow .15s;}
+  .tb-cta:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(196,136,31,0.5);}
+  .tb-cta svg{width:16px;height:16px;fill:none;stroke:#1c1408;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .footer-logo{height:42px;width:auto;margin:40px auto 14px;display:block;animation:up 1s cubic-bezier(.16,1,.3,1) .6s both;}
+  @media(max-width:600px){.footer-logo{height:34px;}.tb-logo img{height:34px;}.tb-cta{font-size:12px;padding:9px 15px;gap:6px;}.tb-cta svg{width:14px;height:14px;}}
+
+  @keyframes up{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  @keyframes pop{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+</style>
+<body>
+  <div class="beam"></div>
+  <main class="wrap">
+    <header class="topbar">
+      <a href="/" class="tb-logo"><img src="/logo.png" alt="Umsatz mit Autos"></a>
+      <a href="/" class="tb-cta">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        Zurück zur Stelle
+      </a>
+    </header>
+    <div class="check">
+      <svg viewBox="0 0 48 48"><path d="M12 25 L21 34 L37 15"/></svg>
+    </div>
+
+    <span class="badge">Bewerbung eingegangen</span>
+    <h1>Danke! Deine Bewerbung ist <span class="gold">bei uns angekommen.</span></h1>
+    <p class="sub">Schön, dass du dabei sein willst. Wir schauen uns deine Bewerbung persönlich an und melden uns in der Regel innerhalb von 24&ndash;48 Stunden bei dir &ndash; per Telefon oder E-Mail.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <div class="t"><b>Wir prüfen deine Bewerbung.</b> Ein Mensch aus dem Team schaut sich deine Angaben in Ruhe an &ndash; kein automatisierter Filter.</div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div class="t"><b>Wir rufen dich an.</b> Passt es grundsätzlich, meldet sich Armin innerhalb von 24&ndash;48 Stunden für ein lockeres Kennenlern-Gespräch.</div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div class="t"><b>Wir lernen uns vor Ort kennen.</b> Du triffst das Team, siehst die Arbeitsweise &ndash; und wir spüren gemeinsam, ob die Chemie stimmt.</div>
+      </div>
+    </div>
+
+    <p class="hint">Tipp: Halte dein <b>Telefon griffbereit</b> und schau in den nächsten Tagen auch in deinen <b>Spam-Ordner</b> &ndash; nicht, dass unsere Nachricht dort landet.</p>
+
+    <img src="/logo.png" alt="Umsatz mit Autos" class="footer-logo">
+    <p class="brand">17 Jahre Automobilhandel · über 30.000 verkaufte Autos</p>
+    <p class="legal"><a href="/impressum" target="_blank" rel="noopener">Impressum</a> · <a href="/datenschutz" target="_blank" rel="noopener">Datenschutz</a></p>
+  </main>
+</body>
+</html>
