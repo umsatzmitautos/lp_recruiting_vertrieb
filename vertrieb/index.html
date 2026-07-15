@@ -737,9 +737,23 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     if (ccDigits === '49' && nat.length < 7) return false; // DE zu kurz
     return true;
   }
-  // Fehlermeldung zurücksetzen, sobald der Nutzer die Nummer korrigiert
-  (function(){ const t = document.querySelector('#applyModal input[name="telefon"]');
-    if (t) t.addEventListener('input', function(){ this.setCustomValidity(''); }); })();
+  // Plausibilitäts-Prüfung der E-Mail (strenger als type=email; blockt Fake-/Wegwerf-Adressen)
+  function isPlausibleEmail(v){
+    v = String(v).trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(v)) return false;   // Grundformat inkl. echter TLD
+    if (/\.{2,}|@\.|\.@|^\.|\.$/.test(v)) return false;          // kaputte Punkte
+    const domain = v.split('@')[1] || '';
+    const junk = ['example.com','example.de','example.org','test.de','test.com','fake.com','mail.com',
+      'mailinator.com','guerrillamail.com','10minutemail.com','tempmail.com','temp-mail.org','trashmail.com',
+      'yopmail.com','sharklasers.com','getnada.com','dispostable.com','maildrop.cc','wegwerfemail.de','byom.de'];
+    if (junk.includes(domain)) return false;
+    return true;
+  }
+  // Fehlermeldungen zurücksetzen, sobald der Nutzer das Feld korrigiert
+  (function(){ ['telefon','email'].forEach(function(n){
+    const el = document.querySelector('#applyModal input[name="' + n + '"]');
+    if (el) el.addEventListener('input', function(){ this.setCustomValidity(''); });
+  }); })();
 
   async function submitApplication(e){
     e.preventDefault();
@@ -760,6 +774,15 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     const phone = d ? cc + " " + d : "";
     const erfahrung = f.querySelector('select[name="erfahrung"]').value;
     const nachricht = f.querySelector('textarea[name="nachricht"]').value.trim();
+
+    // E-Mail-Plausibilität prüfen – Fake-/Fehleingaben abfangen (Button bleibt aktiv bei Fehler)
+    const emailInput = f.querySelector('input[name="email"]');
+    emailInput.setCustomValidity('');
+    if (!isPlausibleEmail(email)) {
+      emailInput.setCustomValidity('Bitte gib eine gültige E-Mail-Adresse ein.');
+      emailInput.reportValidity();
+      return;
+    }
 
     // Telefon-Plausibilität prüfen – Fake-/Fehleingaben abfangen (Button bleibt aktiv bei Fehler)
     const telInput = f.querySelector('input[name="telefon"]');
