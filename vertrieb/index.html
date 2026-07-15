@@ -727,6 +727,20 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     return m ? decodeURIComponent(m[1]) : "";
   }
 
+  // Plausibilitäts-Prüfung der Telefonnummer (blockt offensichtliche Fake-/Fehleingaben)
+  // nat = nationale Nummer (führende 0 & Ländervorwahl bereits entfernt)
+  function isPlausiblePhone(ccDigits, nat){
+    if (!/^\d+$/.test(nat)) return false;                 // nur Ziffern
+    if (nat.length < 6 || nat.length > 12) return false;  // realistische Länge (DE/AT/CH)
+    if (/^(\d)\1+$/.test(nat)) return false;              // alle Ziffern gleich (000000, 111111 …)
+    if (/^0?12345/.test(nat) || /^98765/.test(nat)) return false; // simple Zahlenreihen
+    if (ccDigits === '49' && nat.length < 7) return false; // DE zu kurz
+    return true;
+  }
+  // Fehlermeldung zurücksetzen, sobald der Nutzer die Nummer korrigiert
+  (function(){ const t = document.querySelector('#applyModal input[name="telefon"]');
+    if (t) t.addEventListener('input', function(){ this.setCustomValidity(''); }); })();
+
   async function submitApplication(e){
     e.preventDefault();
     const f = e.target;
@@ -746,6 +760,15 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     const phone = d ? cc + " " + d : "";
     const erfahrung = f.querySelector('select[name="erfahrung"]').value;
     const nachricht = f.querySelector('textarea[name="nachricht"]').value.trim();
+
+    // Telefon-Plausibilität prüfen – Fake-/Fehleingaben abfangen (Button bleibt aktiv bei Fehler)
+    const telInput = f.querySelector('input[name="telefon"]');
+    telInput.setCustomValidity('');
+    if (!isPlausiblePhone(ccDigits, d)) {
+      telInput.setCustomValidity('Bitte gib eine gültige Telefonnummer ein (mit korrekter Vorwahl).');
+      telInput.reportValidity();
+      return;
+    }
 
     if (btn){ btn.disabled = true; btn.dataset.txt = btn.textContent; btn.textContent = "Wird gesendet …"; }
 
