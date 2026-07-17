@@ -683,6 +683,10 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
         </select>
         <input type="tel" name="telefon" placeholder="Telefonnummer" required>
       </div>
+      <div class="tel-row">
+        <input type="number" name="alter" placeholder="Alter" min="16" max="99" required style="flex:0 0 92px;">
+        <input type="text" name="wohnort" placeholder="Wohnort" required>
+      </div>
       <select name="erfahrung" required>
         <option value="" disabled selected>Deine Vertriebserfahrung</option>
         <option value="Keine Erfahrung">Noch keine &ndash; aber Lust darauf</option>
@@ -762,6 +766,8 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
     const vorname   = f.querySelector('input[name="vorname"]').value.trim();
     const nachname  = f.querySelector('input[name="nachname"]').value.trim();
     const email     = f.querySelector('input[name="email"]').value.trim();
+    const alter     = f.querySelector('input[name="alter"]').value.trim();
+    const wohnort   = f.querySelector('input[name="wohnort"]').value.trim();
     const cc = f.querySelector('select[name="vorwahl"]').value;   // z.B. "+49"
     const ccDigits = cc.replace(/\D/g, '');                       // "49"
     let d = f.querySelector('input[name="telefon"]').value.replace(/[^\d+]/g, '');
@@ -802,6 +808,7 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
           Vorname: vorname, Nachname: nachname, email: email, Telefon: phone,
+          Alter: alter, Wohnort: wohnort,
           Vertriebserfahrung: erfahrung, Nachricht: nachricht,
           _subject: "Neue Bewerbung Vertrieb: " + vorname + " " + nachname
         })
