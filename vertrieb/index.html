@@ -809,7 +809,9 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
       if (!res.ok) console.error("Formspree fehlgeschlagen:", res.status);
     } catch (err) { console.error("Formspree Netzwerkfehler:", err); }
 
-    // 2) HubSpot -> Kontakt im CRM
+    // 2) HubSpot -> Kontakt im CRM  (DEAKTIVIERT – nur Formspree gewünscht.
+    //    Zum Reaktivieren: den folgenden Block einfach wieder einkommentieren.)
+    /*
     try {
       const hs = {
         fields: [
@@ -824,6 +826,7 @@ src="https://www.facebook.com/tr?id=632871806191713&ev=PageView&noscript=1"/></n
       if (hutk) hs.context.hutk = hutk;
       await fetch(HS_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(hs) });
     } catch (err) { console.error("HubSpot Netzwerkfehler:", err); }
+    */
 
     // 3) Meta: Browser-Pixel + Conversions API (gemeinsame event_id für Dedup)
     const eventId = (self.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random().toString(16).slice(2));
